@@ -197,7 +197,7 @@ router.post('/enviar-mensaje', async function (req, res, next) {
             //check if is last element, if so, send message with caption
             if (key == message.media.length - 1) {
                 const media = await MessageMedia.fromUrl(value.url);
-                const messageSent = await client.sendMessage(chat_id, media, { caption: message.message });
+                const messageSent = await client.sendMessage(chat_id, media, { caption: message.message, quotedMessageId: message.quotedMessageId });
                 messageSent.chat = await messageSent.getChat();
                 messageSent.contact = await messageSent.getContact();
                 messageSent.additionalData = await messageSent.getInfo();
